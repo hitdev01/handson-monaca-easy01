@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8"/>
+    <script type="text/javascript" src="components/loader.js"></script>
+    <script type="text/javascript">
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady () {
+       //window.alert ('Loading Cordova is completed');
+    }
+
+    function snapPicture () {
+      //A callback function when snapping picture is success.
+      var onSuccess = function(imageData) {
+        // draw img
+        // var image = document.getElementById ('picture');
+        // image.src = "data:image/jpeg;base64," + imageData;
+
+        // draw canvas
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var img = new Image();
+        img.src = "data:image/jpeg;base64," + imageData;
+        ctx.drawImage(img, 0, 0);
+      }
+      //A callback function when snapping picture is fail.
+      var onFail = function(message) {
+        alert ('Error occured: ' + message);
+      }
+
+      navigator.camera.getPicture (onSuccess, onFail,
+          { quality: 50, destinationType: Camera.DestinationType.DATA_URL});
+    }
+
+    function getPhoto () {
+        var onSuccess = function(imageURI) {
+          var largeImage = document.getElementById ('album');
+          largeImage.style.display = 'block';
+          largeImage.src = imageURI;
+        }
+        var onFail = function(message) {
+            alert('An error occured: ' + message);
+        }
+
+        //Specify the source to get the photos.
+        navigator.camera.getPicture(onSuccess, onFail,
+          { quality: 50,destinationType: Camera.DestinationType.FILE_URI,sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,correctOrientation: true});
+    }
+
+    </script>
+  </head>
+
+  <body>
+  　<center>
+    <input type="button" onclick="snapPicture()" value="写真撮影"><br><br>
+    <!--<img id="picture" src="" width="150" height="150"><br><br>-->
+    <canvas id="canvas" width="150" height="150"></canvas><br><br>
+　　<input onclick="LLotation();" type="button" name="Lbutton" value="　←　" />
+　　<input onclick="RLotation();" type="button" name="Rbutton" value="　→　" />
+　　<center>
+  </body>
+
+  <body>
+    <br><br>
+    <input type="button" onclick="getPhoto();" value="アルバム"><br><br>
+    <img style="display:none;" id="album" src="" width="300" height="300" />
+  </body>
+  </html>

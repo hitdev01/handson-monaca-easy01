@@ -1,0 +1,18 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "io.taco.hellotaco"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "io.taco.hellotaco"
+        }
+    },
+    "dependent_plugins": {}
+}

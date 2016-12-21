@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+        background: url("images/omikuji-bg.png") 100% 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    #hako {
+        position: absolute;
+        width: 100%;
+        top: 10%;
+    }
+    #bottombar {
+        position: absolute;
+        bottom: 30px;
+        width: 100%;
+    }
+  </style>
+  <script>
+      function omikuji (){
+        var dice = Math.floor(Math.random() * 200);
+        var image_name;
+        var count = document.getElementById("money").textContent;
+        var usedmoney = parseInt(count) + 300;
+        var strmoney = String(usedmoney);
+        
+        if(usedmoney == 50100){
+            alert("沼の入口へようこそ")
+        }
+        
+        if (dice >= 197) {
+            var dice2 = Math.floor(Math.random() * 50)
+            if(dice2 <=49){
+                var dice3 = Math.floor(Math.random() * 2)
+                if(dice3 == 1){
+                    image_name = "SSRare.jpg"
+                }else{
+                    image_name = "ssrsae.png"
+                }
+                var ssrcount = document.getElementById("ssr").textContent;
+                var ssrcount2 = parseInt(ssrcount) + 1;
+                var strssr = String(ssrcount2);
+                document.getElementById("ssr").textContent = strssr;
+            }
+            else{
+                image_name = "SSRareNatsukichi.jpg"
+                var natsukichicount = document.getElementById("natsukichi").textContent;
+                var natsukichicount2 = parseInt(natsukichicount) + 1;
+                var natsukichi = String(natsukichicount2);
+                document.getElementById("natsukichi").textContent = natsukichi;
+                alert("きたー！")
+                
+                var ssrcount = document.getElementById("ssr").textContent;
+                var ssrcount2 = parseInt(ssrcount) + 1;
+                var strssr = String(ssrcount2);
+                document.getElementById("ssr").textContent = strssr;
+            }
+        } else if  (dice >= 177) {
+            var dice3 = Math.floor(Math.random() * 2);
+            if(dice3 == 1){
+                image_name = "SRare.jpg";
+            }else{
+                image_name = "noriko.png"
+            }
+            var srcount = document.getElementById("sr").textContent;
+            var srcount2 = parseInt(srcount) + 1;
+            var strsr = String(srcount2);
+            document.getElementById("sr").textContent = strsr;
+        } else {
+            var dice3 = Math.floor(Math.random() * 5);
+            if(dice3 == 1){
+                image_name = "Rare.png";
+            }else if(dice3 ==2){
+                image_name = "rare2.png";
+            }else if(dice3 ==3){
+                image_name = "mayu.png";
+            }else if(dice3 ==4){
+                image_name = "asuka.png";
+            }else{
+                image_name = "miku.png";
+            }
+        }
+        
+        document.getElementById("saisyo").style["display"] = "none";
+        document.getElementById("kekka").src = "images/" + image_name;
+        document.getElementById("kekka").style["display"] = "inline";
+        document.getElementById("button").src = "images/omikuji-btn-yarinaosu.png";
+        document.getElementById("money").textContent = strmoney;  
+      }
+      
+  </script>
+</head>
+<body>
+    <div id="hako">
+        <img id="saisyo" src="images/top.png" />
+        <img id="kekka" style="display : none;"/>
+    </div>
+    <div id="bottombar">
+        <font size="4">
+        レアガチャ排出率<br>
+        SSR:1.5%<br>
+        SR:10%<br>
+        R:88.5%<br><br>
+        <img id="button" src="images/omikuji-btn-hajimeru.png" onclick="omikuji()">
+    </div>
+    <div id="message">
+        <font size="5">
+        ここまでの金額
+        <label id="money">0</label>
+        円<br>
+        SR
+        <label id="sr">0</label>
+        枚
+        SSR
+        <label id="ssr">0</label>
+        枚
+        SSR1点狙い
+        <label id="natsukichi">0</label>
+        枚
+        </font>
+    </div>
+</body>
+</html>
